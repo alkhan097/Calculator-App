@@ -2,7 +2,7 @@ const logger = require('../logger');
 
 exports.calculate = (req, res) => {
     const { operation, number1, number2 } = req.body;
-    logger.debug(`Received request: ${operation} ${number1} ${number2}`);
+    logger.info(`Received request: ${operation} ${number1} ${number2}`);
 
     try {
         let result;
@@ -13,6 +13,8 @@ exports.calculate = (req, res) => {
             case 'subtract':
                 result = number1 - number2;
                 break;
+            case  numer1===null:
+                return res.status(400).json({ error: 'Invalid null number' });
             default:
                 return res.status(400).json({ error: 'Invalid operation' });
         }

@@ -13,7 +13,7 @@ exports.calculate = (req, res) => {
             case 'subtract':
                 result = number1 - number2;
                 break;
-            case  numer1===null:
+            case  numer1 || number2===null:
                 return res.status(400).json({ error: 'Invalid null number' });
             default:
                 return res.status(400).json({ error: 'Invalid operation' });

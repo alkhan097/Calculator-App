@@ -1,0 +1,5 @@
+runtime: nodejs18 # Make sure to use a supported version
+env: standard
+handlers:
+- url: /.*
+  script: auto

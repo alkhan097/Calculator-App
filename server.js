@@ -1,32 +1,21 @@
-const express= require('express')
-const bodyParser=require('body-parser')
+const express = require('express');
 const cors = require('cors');
-const app= express()
-app.use(cors())
+const calculatorRoutes = require('./routes/calculatorRoutes');
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
 app.use(express.json());
-const port =process.env.PORT || 3001;
-app.use(express.static('public')); // Serve static files from 'public' directory
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.send('Hello World! This is my calculator app.');
 });
-app.use('/calculate',(req,res)=>{
-    console.log("req.body",req.body)
-    const {operation,number1,number2}= req.body
-    let result
-    if (operation === "add") {
-        let result = number1 + number2;
-        res.status(200).json({ result });
-    } else if (operation === "subtract") {
-        let result = number1 - number2;
-        res.status(200).json({ result });
-    } else {
-        res.status(400).json({ response: "bad request, enter properly" });
-    }
-})
 
+// Use calculator routes
+app.use('/calculate', calculatorRoutes);
 
-
-app.listen(port,()=>{
-    console.log(`listening at port ${port}`)
-})
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});

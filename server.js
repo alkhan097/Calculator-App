@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
 
-const calculatorRoutes = require('./routes/calculatorRoutes');
+const calculatorRoutes = require('./routes/calculator');
 
 const app = express();
 const port = process.env.PORT || 3001;
